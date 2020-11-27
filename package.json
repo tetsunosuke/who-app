@@ -1,15 +1,26 @@
 {
   "name": "who-app",
-  "version": "0.0.0",
+  "version": "0.1.0",
+  "author": "ITO Tetsunosuke",
+  "description": "who app",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tetsunosuke/who-app/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/tetsunosuke/who-app.git"
+  },
+  "homepage": "https://github.com/tetsunosuke/who-app#readme",
   "scripts": {
     "dev": "vite",
     "build": "vite build"
   },
   "dependencies": {
-    "vue": "^3.0.2"
+    "vue": "^3.0.3"
   },
   "devDependencies": {
-    "vite": "^1.0.0-rc.8",
-    "@vue/compiler-sfc": "^3.0.2"
+    "@vue/compiler-sfc": "^3.0.2",
+    "vite": "^1.0.0-rc.8"
   }
 }
