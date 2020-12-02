@@ -1,26 +1,23 @@
-/*
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  /*
+   * text-align: center;
+   * color: #2c3e50;
+   *  margin-top: 60px;
+   */
 }
-*/
 
 ul#colors, ul#dices {
     list-style: none;
 }
-#colors li, #dices li {
-    font-size: 100px;
+#dices li {
+    font-size: 70px;
     display: inline;
 }
 
-
-#color1{ color: black }
-#color2{ color: gray }
-#color3{ color: red }
-#color4{ color: purple }
-#color5{ color: orange }
-#color6{ color: blue }
+#colors li {
+    font-size: 50px;
+    display: inline;
+}

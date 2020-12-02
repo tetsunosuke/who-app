@@ -1,7 +1,7 @@
 <template>
 <table v-if="mode == 'NORMAL'" class="table table-hover table-borderd">
   <thead class="thead-dark">
-    <tr><th>テーマ</th><th>サイコロ</th><th>サイコロ</th></tr>
+    <tr><th>テーマ</th><th>サイコロ1</th><th>サイコロ2</th></tr>
   </thead>
 
   <tbody>

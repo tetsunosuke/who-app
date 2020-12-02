@@ -1,5 +1,5 @@
 <template>
-<h2 role="button" @click="cast">サイコロを振る</h2>
+<button class="btn btn-primary" type="button" @click="cast">サイコロを振る</button>
 <div v-if="num">
 <ul id="dices">
 <li id="dice1" v-bind:style="color">■</li>

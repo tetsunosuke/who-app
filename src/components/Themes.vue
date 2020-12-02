@@ -8,6 +8,7 @@
   </ul>
   <input v-model="newTheme" />
   <!-- TODO :ランダムで選ぶオプションを作る -->
+  <p class="alert alert-warning">テーマの選択・追加は未実装です</p>
 </template>
 
 <script>

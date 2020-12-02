@@ -1,42 +1,43 @@
 <template>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-<h1 class="navvar-brand">Who? like</h1>
-
-<div class="collapse navbar-collapse">
+<!-- navの部分は別コンポーネントにしたい -->
+<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+<div class="container">
+<a class="navbar-brand">Who? like</a>
 <ul class="navbar-nav mr-auto">
-<li class="nav-item active">
-<input type="radio" id="normal" value="NORMAL" v-model="mode" /><label for="normal">NORMAL</label>
+<li class="nav-item">
+<a class="nav-link" @click="changeMode('NORMAL')">NORMAL</a>
 </li>
-<li class="nav-item"><input type="radio" id="hard" value="HARD" v-model="mode" /><label for="hard">HARD</label>
+<li class="nav-item">
+<a class="nav-link" @click="changeMode('HARD')">HARD</a>
 </li>
 </ul>
-</div>
-<div class="navbar-nav">
-<p class="nav-item" id="start" @click="start">START</p>
+<ul class="navbar-nav">
+<li class="nav-item">
+<Modal />
+</li>
+</ul>
 </div>
 </nav>
 
 <!-- <p>selected: {{mode}}</p> -->
 <div class="container">
-  <Colors :colors="colors" />
   <!-- TODO; センター寄せ -->
+  <Colors :colors="colors" />
   <!-- この画面で変更した mode だけを表に渡す -->
   <div class="container">
   <div class="row justify-content-md-center">
-    <div class="col col-lg-4">
+    <div class="col col-md-2">
   <Themes :themes="themes" />
     </div>
-    <div class="col-md-auto">
+    <div class="col-md-8">
         <WhoTable :mode="mode" />
     </div>
-    <div class="col col-lg-4">
+    <div class="col col-md-2">
         <Dice :colors="colors" />
     </div>
   </div>
 </div>
 
-  <!--
-  -->
 </div>
 </template>
 
@@ -45,6 +46,7 @@ import WhoTable from './components/Table.vue'
 import Colors  from './components/Colors.vue'
 import Dice from './components/Dice.vue'
 import Themes from './components/Themes.vue'
+import Modal from './components/Modal.vue'
 import Config from './config.js'
 
 // 状態に関するデータなどはすべてここで持つようにする
@@ -56,6 +58,7 @@ export default {
     WhoTable,
     Colors,
     Dice,
+    Modal
   },
   data () {
       const config = new Config();
@@ -66,6 +69,9 @@ export default {
       }
   },
   methods: {
+      changeMode(mode) {
+          this.mode = mode;
+      },
       start() {
           // リスタート
           console.info("start");
