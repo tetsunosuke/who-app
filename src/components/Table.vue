@@ -5,35 +5,35 @@
   </thead>
 
   <tbody>
-    <tr> <th>テーマ1</th> <td>1</td> <td>2</td></tr>
-    <tr> <th>テーマ2</th> <td>3</td> <td>4</td></tr>
-    <tr> <th>テーマ3</th> <td>5</td> <td>6</td> </tr>
+    <tr v-for="i in [1,2,3]">
+        <th>{{passedSelectedThemes[i-1] === undefined ? "-" : passedSelectedThemes[i-1]}}</th>
+        <td>{{i * 2 -1}}</td> <td>{{i*2}}</td>
+    </tr>
   </tbody>
 </table>
 <table v-else class="table table-hover table-bordered">
   <thead class="thead-dark">
     <tr> <th>テーマ</th> <th>サイコロ</th></tr>
   </thead>
-
   <tbody>
-    <tr> <th>テーマ1</th> <td>1</td></tr>
-    <tr> <th>テーマ2</th> <td>2</td> </tr>
-    <tr> <th>テーマ3</th> <td>3</td> </tr>
-    <tr> <th>テーマ4</th> <td>4</td> </tr>
-    <tr> <th>テーマ5</th> <td>5</td> </tr>
-    <tr> <th>テーマ6</th> <td>6</td> </tr>
+    <tr v-for="i in [1,2,3,4,5,6]">
+        <th>{{passedSelectedThemes[i-1] === undefined ? "-" : passedSelectedThemes[i-1]}}</th>
+        <td>{{i}}</td>
+    </tr> 
   </tbody>
 </table>
-
 </template>
 
 <script>
 export default {
     name: 'WhoTable',
-    props: ['value', 'mode'],
+    props: {
+        'mode': {type:String, default: 'NORMAL'},
+        "selectedThemes": { type : Array, default: [] }
+    },
     data() {
-        console.log(this.mode, this.value);
         return {
+            passedSelectedThemes: this.selectedThemes,
         }
     },
 }

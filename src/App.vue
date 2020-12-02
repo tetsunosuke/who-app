@@ -19,7 +19,6 @@
 </div>
 </nav>
 
-<!-- <p>selected: {{mode}}</p> -->
 <div class="container">
   <!-- TODO; センター寄せ -->
   <Colors :colors="colors" />
@@ -27,13 +26,13 @@
   <div class="container">
   <div class="row justify-content-md-center">
     <div class="col col-md-2">
-  <Themes :themes="themes" />
+      <Themes :themes="themes" @selectTheme="selectTheme" :selectedThemes="selectedThemes"/>
     </div>
     <div class="col-md-8">
-        <WhoTable :mode="mode" />
+      <WhoTable :mode="mode" :selectedThemes="selectedThemes" />
     </div>
     <div class="col col-md-2">
-        <Dice :colors="colors" />
+      <Dice :colors="colors" />
     </div>
   </div>
 </div>
@@ -65,11 +64,33 @@ export default {
       return {
           "colors": config.getColors(),
           "themes": config.getThemes(),
-          "mode": "NORMAL"
+          "mode": "NORMAL",
+          "selectedThemes": [],
       }
   },
   methods: {
+    selectTheme(e) {
+        if (e.target.className.indexOf("outline") === -1) {
+            // 選択済みオブジェクト
+            // 選択済みテーマから削除
+            this.selectedThemes = this.selectedThemes.filter(v => v !== e.target.innerText);
+            // TODO: ここが双方向バインディングされてない...
+            console.log(`deleted ${e.target.innerText}`, this.selectedThemes);
+        } else {
+            // 未選択テーマであればテーマに追加
+            // そうでなければモードごとの最大まで追加
+            if (
+                this.selectedThemes.indexOf(e.target.innerText) === -1
+                &&
+                this.selectedThemes.length < (this.mode === "NORMAL" ? 3: 6)
+            ) {
+                this.selectedThemes.push(e.target.innerText);
+                console.log(`added ${e.target.innerText}`, this.selectedThemes);
+            }
+        }
+      },
       changeMode(mode) {
+          this.selectedThemes = [];
           this.mode = mode;
       },
       start() {

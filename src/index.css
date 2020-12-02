@@ -9,8 +9,12 @@
    */
 }
 
-ul#colors, ul#dices {
+ul#colors, ul#dices, ul#themes {
     list-style: none;
+}
+
+#themes li {
+    display:　inline;
 }
 #dices li {
     font-size: 70px;
