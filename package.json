@@ -1,6 +1,6 @@
 {
   "name": "who-app",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "author": "ITO Tetsunosuke",
   "description": "who app",
   "license": "ISC",
@@ -14,7 +14,9 @@
   "homepage": "https://github.com/tetsunosuke/who-app#readme",
   "scripts": {
     "dev": "vite",
-    "build": "vite build"
+    "build": "vite build",
+    "deploy": "vite build && netlify deploy -d dist",
+    "deploy:prod": "netlify deploy -d dist --prod"
   },
   "dependencies": {
     "vue": "^3.0.3"
