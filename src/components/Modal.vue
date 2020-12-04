@@ -24,6 +24,7 @@ help
         </ol>
       </div>
       <div class="modal-footer">
+        <p>Created by ITO Tetsunosuke, <a href="https://github.com/tetsunosuke/who-app">GitHub</a></p>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
       </div>
     </div>

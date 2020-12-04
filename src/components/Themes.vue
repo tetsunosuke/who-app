@@ -1,6 +1,6 @@
 <template>
   <ul id="themes">
-    <!-- これらを選択したら右側の欄に入るようにする -->
+    <li><button class="btn btn-primary" @click="$emit('selectRandomTheme')">ランダムに設定</button></li>
     <li v-for="value in passedThemes">
       <button @click="$emit('selectTheme', $event)" class="btn" v-bind:class="passedSelectedThemes.includes(value)? 'btn-dark' : 'btn-outline-dark'">
       {{value}}
@@ -40,12 +40,12 @@ export default {
           }
       },
   },
-  emits: ["selectTheme"],
+  emits: ["selectTheme", "selectRandomTheme"],
   methods: {
       addTheme(e) {
           this.themes.push(e.target.value);
           e.target.value = "";
-      },
+      }
   }
 }
 </script>

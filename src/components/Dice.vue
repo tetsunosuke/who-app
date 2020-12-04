@@ -1,5 +1,6 @@
 <template>
 <!-- TODO: テーマが選ばれていないときはサイコロが振れないようにする -->
+<template v-if="castable">
 <button class="btn btn-primary" type="button" @click="cast">サイコロを振る</button>
 <div v-if="num">
 <ul id="dices">
@@ -12,6 +13,7 @@
 </ul>
 </div>
 </template>
+</template>
 
 <script>
 import DiceIcon from './DiceIcon.vue'
@@ -22,13 +24,22 @@ export default {
     },
     props: {
         "colors": { type : Array, default: [] },
-        "themes": { type : Array, default: [] },
+        "selectedThemes": { type: Array, default:[]},
+        "mode": {type :String, default: "NORMAL"}
     },
     data() {
         return {
             num: "",
             color: {color: "white"},
         };
+    },
+    computed: {
+        castable: {
+            get() {
+                const num = (this.mode === "NORMAL" ? 3 : 6);
+                return num === this.selectedThemes.length;
+            }
+        }
     },
     methods: {
         cast() {

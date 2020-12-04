@@ -1,36 +1,17 @@
 <template>
-<!-- navの部分は別コンポーネントにしたい -->
-<nav class="navbar navbar-expand-md navbar-dark bg-dark">
-<div class="container">
-<a class="navbar-brand">Who? like</a>
-<ul class="navbar-nav mr-auto">
-<li class="nav-item">
-<a class="nav-link" @click="changeMode('NORMAL')">NORMAL</a>
-</li>
-<li class="nav-item">
-<a class="nav-link" @click="changeMode('HARD')">HARD</a>
-</li>
-</ul>
-<ul class="navbar-nav">
-<li class="nav-item">
-<Modal />
-</li>
-</ul>
-</div>
-</nav>
-
+<Navigation @changeMode="changeMode" />
 <div class="container">
   <div class="row justify-content-md-center">
     <div class="col-md-6">
         <Colors :colors="colors" />
     </div>
     <div class="col-md-6">
-        <Dice :colors="colors" />
+        <Dice :colors="colors" :selectedThemes="selectedThemes" :mode="mode" />
     </div>
   </div>
 </div>
 <div class="container">
-  <Themes @selectTheme="selectTheme" :themes="themes" :selectedThemes="selectedThemes"/>
+  <Themes @selectTheme="selectTheme" @selectRandomTheme="selectRandomTheme" :themes="themes" :selectedThemes="selectedThemes"/>
   <!-- この画面で変更した mode だけを表に渡す -->
   <div class="container">
   <div class="row justify-content-md-center">
@@ -49,9 +30,17 @@ import Colors  from './components/Colors.vue'
 import Dice from './components/Dice.vue'
 import Themes from './components/Themes.vue'
 import Modal from './components/Modal.vue'
+import Navigation from './components/Navigation.vue'
 import Config from './config.js'
 
 // 状態に関するデータなどはすべてここで持つようにする
+const shuffle = ([...array]) => {
+    for (let i = array.length - 1; i >= 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+}
 
 export default {
     name: 'App',
@@ -60,7 +49,8 @@ export default {
         WhoTable,
         Colors,
         Dice,
-        Modal
+        Modal,
+        Navigation
     },
     data () {
         const config = new Config();
@@ -85,13 +75,13 @@ export default {
                 this.selectedThemes = this.selectedThemes.filter(v => v !== e.target.innerText);
             }
         },
+        selectRandomTheme() {
+            const count = (this.mode === "NORMAL" ? 3 : 6);
+            this.selectedThemes = shuffle(this.themes).slice(0, count);
+        },
         changeMode(mode) {
             this.selectedThemes = [];
             this.mode = mode;
-        },
-        start() {
-            // リスタート
-            console.info("start");
         }
     }
 }
