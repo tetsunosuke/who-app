@@ -22,7 +22,7 @@
     "vue": "^3.0.3"
   },
   "devDependencies": {
-    "@vue/compiler-sfc": "^3.0.2",
+    "@vue/compiler-sfc": "^3.2.45",
     "vite": "^1.0.0-rc.8"
   }
 }
